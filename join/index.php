@@ -4,21 +4,37 @@ session_start();
 if(!empty($_POST)) {
     // エラー項目の確認
     if($_POST['name'] == ''){
-    $error['name'] = 'blank';
+        $error['name'] = 'blank';
     }
     if ($_POST['email'] == '') {
-    $error['email'] = 'blank';
+        $error['email'] = 'blank';
     }
     if (strlen($_POST['password']) < 4) {
-    $error['password'] = 'length';
+        $error['password'] = 'length';
     }
     if ($_POST['password'] == '') {
-    $error['password'] = 'blank';
+        $error['password'] = 'blank';
     }
-    if (empty($error)) {
-    $_SESSION['join'] = $_POST;
-    header('Location: check.php');
-    exit();
+    $fileName = $_FILES['imgage']['name'];
+    if(!empty($fileName)){
+        $ext = substr($fileName,-3);
+        if($ext != 'jpg' &&  $ext != 'gif'){
+            $error['image']  = 'type';
+        }
+    }
+
+    if (empty($error)){
+        $image = date('YmdHis') . $_FILES['image']['name'];
+        move_uploaded_file($_FILES['image']['tmp_name'],'../member_picture/'. $image);
+        $_SESSION['join'] = $_POST;
+        $_SESSION['join']['image'] = $image;
+        header('Location: check.php');
+        exit();
+    }
+
+    if($_REQUEST['action'] == 'rewrite'){
+        $_POST = $_SESSION['join'];
+        $error['rewrite'] = true;
     }
 }
 ?>
