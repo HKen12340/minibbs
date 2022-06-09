@@ -38,6 +38,7 @@ if(!empty($_POST)) {
     
 
     if (empty($error)){
+        // 画像をアップロードする
         $image = date('YmdHis') . $_FILES['image']['name'];
         move_uploaded_file($_FILES['image']['tmp_name'],'../member_picture/'. $image);
         $_SESSION['join'] = $_POST;
@@ -45,10 +46,10 @@ if(!empty($_POST)) {
         header('Location: check.php');
         exit();
     }
-
-    if($_REQUEST['action'] == 'rewrite'){
-        $_POST = $_SESSION['join'];
-        $error['rewrite'] = true;
+// 書き直し
+if ($_REQUEST['action'] == 'rewrite') {
+    $_POST = $_SESSION['join'];
+    $error['rewrite'] = true;
     }
 }
 ?>
