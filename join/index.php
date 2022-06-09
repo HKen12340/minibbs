@@ -1,5 +1,6 @@
 <?php
 error_reporting(0);
+require('../dbconnect.php');
 session_start();
 if(!empty($_POST)) {
     // エラー項目の確認
@@ -22,6 +23,7 @@ if(!empty($_POST)) {
             $error['image']  = 'type';
         }
     }
+    
 
     if (empty($error)){
         $image = date('YmdHis') . $_FILES['image']['name'];

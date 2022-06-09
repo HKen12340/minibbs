@@ -1,13 +1,28 @@
 <?php
 session_start();
+require('../dbconnect.php');
 
 if(!isset($_SESSION['join'])){
     header('Location: index.php');
     exit();
 }
+if(!empty($_POST)){
+    $sql = sprintf('INSERT INTO members SET name="%s",email="%s",password="%s",pictrue="%s",created="%s"',
+    mysqli_real_escape_string($db,$_SESSION['join']['name']),
+    mysqli_real_escape_string($db,$_SESSION['join']['email']),
+    mysqli_real_escape_string($db,sha1($_SESSION['join']['password'])),
+    mysqli_real_escape_string($db,$_SESSION['join']['image']),
+    date('Y-m-d H:i:s')
+);
+    mysqli_query($db,$sql) or die(mysqli_error($db));
+    unset($_SESSION['join']);
 
+    header('Location :thanks.php');
+    exit();
+}
 ?>
 <form action="" method="post">
+    <input type="hidden" name="action" value="submit"/>
     <dl>
         <dt>ニックネーム</dt>
         <dd><?php echo htmlspecialchars($_SESSION['join']['name'],ENT_QUOTES); ?></dd>
