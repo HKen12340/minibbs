@@ -46,12 +46,13 @@ if(!empty($_POST)) {
         header('Location: check.php');
         exit();
     }
+}
 // 書き直し
 if ($_REQUEST['action'] == 'rewrite') {
     $_POST = $_SESSION['join'];
     $error['rewrite'] = true;
     }
-}
+
 ?>
 <p>次のフォームに必要事項をご記入ください。</p>
 <form action="" method="post" enctype="multipart/form-data">
