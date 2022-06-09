@@ -23,6 +23,18 @@ if(!empty($_POST)) {
             $error['image']  = 'type';
         }
     }
+
+    //アカウントの重複チェック
+    if(empty($error)){
+        $sql = sprintf('SELECT COUNT(*) AS cnt FROM members WHERE email="%s"',
+            mysqli_real_escape_string($db,$_POST['email'])
+            );
+        $record = mysqli_query($db,$sql) or die(mysqli_error($db));
+        $table = mysqli_fetch_assoc($record);
+        if($table['cnt'] > 0){
+            $error['email'] = 'duplicate';
+        }
+    }
     
 
     if (empty($error)){
@@ -62,6 +74,9 @@ value = "<?php echo htmlspecialchars($_POST['password'],ENT_QUOTES,'UTF-8') ?>"/
 <?php if ($error['password'] == 'blank'): ?>
 <p class="error">* パスワードを入力してください</p>
 <?php endif; ?>
+<?php if($error['email'] == 'duplicate'):?>
+    <p class="error">* 指定されたメールアドレスはすでに登録されています</p> 
+<?php endif; ?>   
 <?php if ($error['password'] == 'length'): ?>
 <p class="error">パスワードは4文字で入力して下さい</p>
 <?php endif; ?>
