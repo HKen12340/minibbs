@@ -9,7 +9,7 @@
         <dd>
             <input type="text" name="email" size="35" maxlength="255" />
         </dd>
-        <dt>パスワード</dt>
+        <dt>パスワードあ</dt>
         <dd>
             <input type="password" name="password" size="35" maxlength="255"/>
         </dd>
