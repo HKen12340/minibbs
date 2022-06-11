@@ -24,7 +24,7 @@
             $record =  mysqli_query($db,$sql) or die(mysqli_error($db));
             if($table = mysqli_fetch_assoc($record)){
                 //ログイン成功
-                $_SESSION['id'] = table['id'];
+                $_SESSION['id'] = $table['id'];
                 $_SESSION['time'] = time();
 
                 //ログイン情報を記録する
