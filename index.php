@@ -82,7 +82,11 @@ if (isset($_REQUEST['res'])){
                 <p><?php echo htmlspecialchars($post['message'],ENT_QUOTES,'UTF-8'); ?>
                 <span class="name">(<?php echo htmlspecialchars($post['name'],ENT_QUOTES,'UTF-8'); ?>)</span>
                 [<a href="index.php?res=<?php echo htmlspecialchars($post['id'],ENT_QUOTES,'UFT-8'); ?>">Re</a>]</p>
-                <p class="day"><?php echo htmlspecialchars($post['created'],ENT_QUOTES,'UTF-8'); ?></p>
+                <p class="day"><a href="view.php?id=<?php echo htmlspecialchars($post['id'],ENT_QUOTES,'UTF-8'); ?>">
+                <?php echo htmlspecialchars($post['created'],ENT_QUOTES,'UTF-8'); ?></a></p>
+                <?php if($post['reply_post_id']>0): ?>
+                    <a href="view.php?id=<?php echo htmlspecialchars($post['reply_post_id'],ENT_QUOTES,'UTF-8'); ?>">送信元のメッセージ</a>
+                <?php endif; ?>
             </div>
             <?php endwhile; ?>
         </div>
