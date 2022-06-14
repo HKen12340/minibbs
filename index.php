@@ -1,7 +1,6 @@
 <?php
 session_start();
 require('dbconnect.php');
-
 error_reporting(0);
 if(isset($_SESSION['id']) && $_SESSION['time'] + 3600 > time()){
     //ログインしている
@@ -36,6 +35,7 @@ $sql = sprintf('SELECT m.name,m.picture,p.* FROM members m,
         posts p WHERE m.id = p.member_id ORDER BY p.created DESC');
 $posts = mysqli_query($db,$sql) or die(mysqli_error($db));        
 
+//返信の場合
 if (isset($_REQUEST['res'])){
     $sql = sprintf('SELECT m.name,m.picture,p.* FROM members m,posts p WHERE 
     m.id=p.member_id AND p.id = %d ORDER BY p.created DESC'
@@ -44,6 +44,10 @@ if (isset($_REQUEST['res'])){
     $record = mysqli_query($db,$sql) or die(sqli_error($db));
     $table = mysqli_fetch_assoc($record);
     $message = '@'.$table['name'].' '.$table['message'];
+}
+//htmlspecialcharsのショートカット
+function h($value){
+    return htmlspecialchars($value,ENT_QUOTES,'UTF-8');
 }
 ?>
 <!DOCUTYPE html>
@@ -60,12 +64,12 @@ if (isset($_REQUEST['res'])){
         <div id="content">
             <form action="" method="post">
                 <dl>
-                <dt><?php echo htmlspecialchars($member['name']); ?>さん、メッセージをどうぞ</dt>
+                <dt><?php echo  h($member['name']); ?>さん、メッセージをどうぞ</dt>
                     <dd>
                         <textarea name="message"  cols="50" rows="5"><?php 
-                            echo htmlspecialchars($message,ENT_QUOTES,'UTF-8'); ?></textarea>
+                            echo  h($message); ?></textarea>
                             <input type = "hidden" name="reply_post_id" 
-                            value="<?php echo htmlspecialchars($_REQUEST['res'],ENT_QUOTES,'UTF-8');?>" />
+                            value="<?php  echo  h($_REQUEST['res']);?>" />
                     </dd>
                 </dl>
                 <div>
@@ -77,15 +81,15 @@ if (isset($_REQUEST['res'])){
                    
             ?>
             <div class="msg">
-                <img src="member_picture/<?php echo htmlspecialchars($post['picture'],ENT_QUOTES,'UTF-8'); ?>" 
-                width="48" height="48" alt="<?php echo htmlspecialchars($post['picture'],ENT_QUOTES,'UTF-8'); ?>"/>
-                <p><?php echo htmlspecialchars($post['message'],ENT_QUOTES,'UTF-8'); ?>
-                <span class="name">(<?php echo htmlspecialchars($post['name'],ENT_QUOTES,'UTF-8'); ?>)</span>
-                [<a href="index.php?res=<?php echo htmlspecialchars($post['id'],ENT_QUOTES,'UFT-8'); ?>">Re</a>]</p>
-                <p class="day"><a href="view.php?id=<?php echo htmlspecialchars($post['id'],ENT_QUOTES,'UTF-8'); ?>">
-                <?php echo htmlspecialchars($post['created'],ENT_QUOTES,'UTF-8'); ?></a></p>
+                <img src="member_picture/<?php  echo  h($post['picture']); ?>" 
+                width="48" height="48" alt="<?php h($post['picture']);?>"/>
+                <p><?php echo  h($post['message']); ?>
+                <span class="name">(<?php echo  h($post['name']); ?>)</span>
+                [<a href="index.php?res=<?php echo  h($post['id']); ?>">Re</a>]</p>
+                <p class="day"><a href="view.php?id=<?php  echo  h($post['id']); ?>">
+                <?php echo  h($post['created']); ?></a></p>
                 <?php if($post['reply_post_id']>0): ?>
-                    <a href="view.php?id=<?php echo htmlspecialchars($post['reply_post_id'],ENT_QUOTES,'UTF-8'); ?>">送信元のメッセージ</a>
+                    <a href="view.php?id=<?php echo  h($post['reply_post_id']); ?>">送信元のメッセージ</a>
                 <?php endif; ?>
             </div>
             <?php endwhile; ?>
