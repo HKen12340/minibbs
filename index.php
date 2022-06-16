@@ -119,7 +119,7 @@ function makeLink($value){
                 <?php endif; ?>
                 <?php if($_SESSION['id'] == $post['member_id']): ?>
                     [<a href="delete.php?id=<?php echo h($post['id']); ?>" 
-                    style="color:#F33;">削除</a>]
+                    style="color:#F33;" onclick="return confirm('削除してよろしいですか？');">削除</a>]
                 <?php endif; ?>
             </div>
             <?php endwhile; ?>
