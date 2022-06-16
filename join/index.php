@@ -35,6 +35,18 @@ if(!empty($_POST)) {
             $error['email'] = 'duplicate';
         }
     }
+
+        //ニックネームの重複チェック
+        if(empty($error)){
+            $sql = sprintf('SELECT COUNT(*) AS cnt FROM members WHERE name="%s"',
+                mysqli_real_escape_string($db,$_POST['name'])
+                );
+            $record = mysqli_query($db,$sql) or die(mysqli_error($db));
+            $table = mysqli_fetch_assoc($record);
+            if($table['cnt'] > 0){
+                $error['name'] = 'duplicate';
+            }
+        }
     
 
     if (empty($error)){
@@ -54,6 +66,10 @@ if ($_REQUEST['action'] == 'rewrite') {
     }
 
 ?>
+<!DOCUTYPE html>
+<html>
+    <body>
+        
 <p>次のフォームに必要事項をご記入ください。</p>
 <form action="" method="post" enctype="multipart/form-data">
 <dl>
@@ -62,6 +78,9 @@ if ($_REQUEST['action'] == 'rewrite') {
     value = "<?php echo htmlspecialchars($_POST['name'],ENT_QUOTES,'UTF-8') ?>"/>
  <?php if ($error['name'] == 'blank'): ?>
 <p class="error">* ニックネームを入力してください</p>
+<?php endif; ?>
+<?php if ($error['name'] == 'duplicate'): ?>
+<p class="error">* 指定したニックネームはすでに登録されています</p>
 <?php endif; ?>
 </dd>
 <dt>メールアドレス<span class="required">必須</span></dt>
@@ -92,3 +111,6 @@ value = "<?php echo htmlspecialchars($_POST['password'],ENT_QUOTES,'UTF-8') ?>"/
 </dl>
 <div><input type="submit" value="入力内容を確認する" /></div>
 </form>
+</body>
+
+</html>
