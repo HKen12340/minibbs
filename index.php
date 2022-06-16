@@ -79,7 +79,7 @@ function makeLink($value){
 <html>
     <head>
         <meta content="text/html" charset="UTF-8"/>
-        <link rel="stylesheet" type="text/css" href="sytle.css"/>
+        <link rel="stylesheet" type="text/css" href="style.css"/>
         <title>ひとこと掲示板</title>
     </head>
     <body>
@@ -90,16 +90,17 @@ function makeLink($value){
             <div style="text-align:right"><a href="logout.php">ログアウト</a></div>
             <form action="" method="post">
                 <dl>
-                <dt><?php echo  h($member['name']); ?>さん、メッセージをどうぞ</dt>
+                <dt></dt>
                     <dd>
-                        <textarea name="message"  cols="50" rows="5"><?php 
+                    <?php echo  h($member['name']); ?>さん、メッセージをどうぞ
+                        <textarea name="message"  cols="110" rows="10"><?php 
                             echo  h($message); ?></textarea>
                             <input type = "hidden" name="reply_post_id" 
                             value="<?php  echo  h($_REQUEST['res']);?>" />
                     </dd>
                 </dl>
                 <div>
-                    <input type="submit" value="投稿する">
+                    <input id = "submit" type="submit" value="投稿する">
                 </div>
             </form>
             <?php 
