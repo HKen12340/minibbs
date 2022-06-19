@@ -17,6 +17,6 @@ mysqli_real_escape_string($db, $id)
 mysqli_query($db, $sql) or die(mysqli_error($db));
 }
 }
-header('Location: index.php');
+header('Location: index.php?thread_id='. $_SESSION['thread_id']);
 exit();
 ?>

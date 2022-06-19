@@ -26,7 +26,8 @@
                 <h1>ひとこと掲示板</h1>
             </div>
             <div id="content">
-                <p>&laquo;<a href="index.php">一覧に戻る</a></p>
+                <p>&laquo;<a href='index.php?thread_id=<?php echo $_SESSION['thread_id']; ?>'>
+                一覧に戻る</a></p>
                 <?php                 
                     if($post = mysqli_fetch_assoc($posts)):
                 ?>
