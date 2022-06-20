@@ -21,10 +21,9 @@
             <link rel="stylesheet" type="text/css" href="style.css">
             <title>ひとこと掲示板</title>
         </head>
-        <div id="warp">
-            <div id="head">
-                <h1>ひとこと掲示板</h1>
-            </div>
+        <div id="worp">
+            <h1>ひとこと掲示板</h1>
+        </div>
             <div id="content">
                 <p>&laquo;<a href='index.php?thread_id=<?php echo $_SESSION['thread_id']; ?>'>
                 一覧に戻る</a></p>

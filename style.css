@@ -47,3 +47,10 @@ body{
 .Thread_list{
    margin: auto;
 }
+    textarea{
+        width: 700px;
+        height: 160px;
+    }
+.thread_a{
+    text-align: center;
+}

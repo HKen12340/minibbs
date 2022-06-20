@@ -88,6 +88,7 @@ function makeLink($value){
     <head>
         <meta content="text/html" charset="UTF-8"/>
         <link rel="stylesheet" type="text/css" href="style.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>ひとこと掲示板</title>
     </head>
     <body>
@@ -100,7 +101,7 @@ function makeLink($value){
             <form action="" method="post">
             <div class="message_form">    
                     <?php echo  h($member['name']); ?>さん、メッセージをどうぞ
-                        <textarea name="message"  cols="110" rows="10"><?php 
+                        <textarea name="message"><?php 
                             echo  h($message); ?></textarea>
                             <input type = "hidden" name="reply_post_id" 
                             value="<?php  echo  h($_REQUEST['res']);?>" />

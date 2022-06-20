@@ -20,9 +20,11 @@
 </body>
     <?php while($threads = mysqli_fetch_assoc($thread_table)):?>
       <hr>
+      <div class="thread_a">
      <a href="index.php?thread_id=<?php echo $threads['thread_id'] ?>">
       <h1 class="Thread_list"><?php echo $threads['thread_name'] ?></h1></a>
       <p><?php echo $threads['created'] ?></p>
+      </div>
     <?php endwhile; ?>
     <hr>
     </html>

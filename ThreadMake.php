@@ -1,8 +1,16 @@
 <html>
     <head>
-        <meta charset="UTF-8">
+        <meta content="text/html" charset="UTF-8"/>
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>ひとこと掲示板</title>
     </head>
     <body>
+        <div id="worp">
+            <h1>ひとこと掲示板</h1>
+        </div>
+        <div id="content">
+        <a href="ThreadList.php">一覧へ戻る</a>
        <p>スレッド名を入力してください</p>
         <form action="" method="post">
             <input type="text" name="thread_name">
