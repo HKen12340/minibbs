@@ -1,8 +1,13 @@
-<!DOCTYPE HTML>
 <html>
     <head>
-        <meta charset="utf-8">
+        <meta content="text/html" charset="UTF-8"/>
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+        <title>ひとこと掲示板</title>
     </head>
+    <body>
+        <div id="worp">
+            <h1>ひとこと掲示板</h1>
+        </div>
     <?php
     require('dbconnect.php');
     error_reporting(0);
@@ -41,14 +46,14 @@
             $error['login'] = 'blank';
         }
     }
-?>
+    ?>
     <body>
-<div id="lead">
+ <div id="lead">
     <p>メールアドレスとパスワードを記入してログインしてください</p>
     <p>入会手続きがまだの方はこちらからどうぞ。</p>
     <p>&raquo;<a href="join/">入会手続き</a></p>
-</div>
-<form action="" method="post">
+ </div>
+ <form action="" method="post">
     <dl>
         <dt>メールアドレス</dt>
         <dd>
@@ -73,6 +78,6 @@
         </dd>
     <dl>
         <div><input type="submit" value="ログインする" /></div>
-</form>
-</body>
+ </form>
+ </body>
 </html>

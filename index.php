@@ -95,20 +95,17 @@ function makeLink($value){
             <h1>ひとこと掲示板</h1>
         </div>
         <div id="content">
+        <a href="ThreadList.php">一覧へ戻る</a>
             <div style="text-align:right"><a href="logout.php">ログアウト</a></div>
             <form action="" method="post">
-                <dl>
-                <dt></dt>
-                    <dd>
+            <div class="message_form">    
                     <?php echo  h($member['name']); ?>さん、メッセージをどうぞ
                         <textarea name="message"  cols="110" rows="10"><?php 
                             echo  h($message); ?></textarea>
                             <input type = "hidden" name="reply_post_id" 
                             value="<?php  echo  h($_REQUEST['res']);?>" />
-                    </dd>
-                </dl>
-                <div>
-                    <input id = "submit" type="submit" value="投稿する">
+                            <p><input id = "submit" type="submit" value="投稿する"></p>
+                </div>
                 </div>
             </form>
             
@@ -159,6 +156,6 @@ function makeLink($value){
         <div id="foot">
             <p><img src="images/txt_copyright.png" width="136" height="15" alt="(C) H2O SPACE, Mynavi"/></p>
         </div>
-        <a href="ThreadList.php">一覧へ戻る</a>
+        
     </body>
 </html>

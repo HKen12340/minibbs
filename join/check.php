@@ -23,12 +23,18 @@ if(!empty($_POST)){
 
     header('Location: thanks.php');
     exit();
-
-
 }
-
-
 ?>
+<html>
+        <head>
+            <meta htt-equiv="Content-Type" content="text/html"; charset="UTF-8"/>
+            <link rel="stylesheet" type="text/css" href="../style.css">
+            <title>ひとこと掲示板</title>
+        </head>
+    <body>
+    <div id="worp">
+            <h1>ひとこと掲示板</h1>
+        </div>
 <form action="" method="post">
     <input type="hidden" name="action" value="submit"/>
     <dl>
@@ -46,3 +52,5 @@ if(!empty($_POST)){
     <div><a href="index.php?action=rewrite">&laquo;&nbsp;書き直す</a>
     <input type = "submit" value="登録する"/></div>
 </form>
+</body>
+</html>
